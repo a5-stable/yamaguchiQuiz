@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yamaguchi_quiz/pages/quiz.dart';
+import 'package:yamaguchi_quiz/pages/quiz_page.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -24,11 +24,12 @@ class _HomeState extends State<Home> {
             SizedBox(height: 20), // 適宜スペーサーを追加
             ElevatedButton(
               onPressed: () {
+                print('スタートボタンが押されました');
                 // スタートボタンが押された時の処理
                 // ここで問題画面に遷移するナビゲーションを追加する
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Quiz()), // QuizScreenへの遷移
+                  MaterialPageRoute(builder: (context) => QuizPage()), // QuizScreenへの遷移
                 );              },
               child: Text(
                 'スタート',
