@@ -26,6 +26,7 @@ class _QuizState extends State<QuizPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text('第${quiz.currentProblemIndex}問目'),
             Image(
               image: AssetImage('assets/${quiz.currentProblem().correctCity.name}.png'),
               height: 150.0,
@@ -38,10 +39,13 @@ class _QuizState extends State<QuizPage> {
               shrinkWrap: true,
               children: quiz.currentProblem().options.map((option) =>
                   buildElevatedButton(option, () {
-                    setState(() {
-                      quiz.createNewProblem();
-                      quiz.currentProblemIndex++;
-                    });
+                    if (quiz.currentProblemIndex < 10) {
+                      setState(() {
+                        quiz.createNewProblem();
+                        quiz.currentProblemIndex++;
+                      });
+                    } else {
+                    }
                   })
               ).toList(),
             ),
