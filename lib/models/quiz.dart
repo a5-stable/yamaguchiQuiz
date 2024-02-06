@@ -19,6 +19,7 @@ class Quiz {
     // pick up 1 correct city randomly
     var random = Random();
     City correctCity = remainingCities[random.nextInt(remainingCities.length)];
+    remainingCities.remove(correctCity);
 
     // pick up 3 wrong cities randomly
     List<String> options = [];
@@ -26,8 +27,9 @@ class Quiz {
     for (var i = 0; i < 3; i++) {
       options.add(remainingCities[random.nextInt(remainingCities.length)].displayName);
     }
+    options.shuffle();
 
-    Problem newProblem = Problem(correctCity, options, false);
+    Problem newProblem = Problem(correctCity, options, "", false);
     problems.add(newProblem);
   }
 

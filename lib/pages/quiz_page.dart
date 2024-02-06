@@ -40,11 +40,19 @@ class _QuizState extends State<QuizPage> {
               children: quiz.currentProblem().options.map((option) =>
                   buildElevatedButton(option, () {
                     if (quiz.currentProblemIndex < 10) {
+                      quiz.currentProblem().answeredCityName = option;
+                      quiz.currentProblem().isCorrect = quiz.currentProblem().correctCity.displayName == option;
+                      if(quiz.currentProblem().isCorrect) {
+                        quiz.correctAnswers++;
+                      }
                       setState(() {
                         quiz.createNewProblem();
                         quiz.currentProblemIndex++;
                       });
                     } else {
+                      Navigator.of(context).pushReplacementNamed('/result', arguments: {
+                        "quiz": quiz
+                      });
                     }
                   })
               ).toList(),
